@@ -1,0 +1,45 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="edu.ucuccs.lookforrent.Location" >
+
+     <fragment
+         android:id="@+id/map"
+         android:name="com.google.android.gms.maps.MapFragment"
+         android:layout_width="wrap_content"
+         android:layout_height="match_parent"
+         android:layout_alignParentBottom="true"
+         android:layout_alignParentLeft="true"
+         android:layout_alignParentRight="true"
+         android:layout_alignParentTop="true" />
+
+   <EditText
+       android:id="@+id/editText_uni"
+       android:layout_width="fill_parent"
+       android:layout_height="wrap_content"
+       android:layout_marginTop="10dp"
+       android:layout_marginBottom="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="20dp"
+       android:background="@drawable/rounded_edittext"
+       android:inputType="text"
+       android:padding="3dp" >
+
+    </EditText>
+     <ImageView
+        android:id="@+id/img_btn_uni"
+        android:onClick="img_btn_search_uni"
+        android:padding="2dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/editText_uni"
+        android:layout_alignBottom="@+id/editText_uni"
+        android:layout_alignRight="@+id/editText_uni"
+        android:src="@drawable/ic_search" />
+
+</RelativeLayout>
