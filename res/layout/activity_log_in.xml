@@ -9,44 +9,58 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="edu.ucuccs.lookforrent.LogIn" >
 
-     <EditText
-         android:id="@+id/editText_username"
-         android:hint="UserName"
-         android:gravity="center"
-         android:layout_width="fill_parent"
-         android:layout_height="wrap_content"
-         android:layout_alignParentTop="true"
-         android:layout_centerHorizontal="true"
-         android:layout_marginTop="56dp"
-         android:background="@drawable/rounded_edittext"
-         android:ems="10"
-         android:inputType="text"
-         android:padding="3dp" />
+    <Button
+        android:id="@+id/btn_signUp"
+        android:onClick="click_signUp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:textColor="#FFFFFF"
+        android:background="#144375"
+        android:text="Sign Up" />
 
-      <EditText
-          android:id="@+id/editText_pass"
-          android:layout_width="fill_parent"
-          android:layout_height="wrap_content"
-          android:layout_alignParentTop="true"
-          android:layout_centerHorizontal="true"
-          android:layout_marginTop="105dp"
-          android:background="@drawable/rounded_edittext"
-          android:ems="10"
-          android:gravity="center"
-          android:hint="Password"
-          android:inputType="text"
-          android:padding="3dp" >
+    <EditText
+        android:id="@+id/edit_username"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/btn_signUp"
+        android:layout_below="@+id/btn_signUp"
+        android:layout_marginTop="26dp"
+        android:background="@drawable/rounded_edittext"
+        android:ems="10"
+        android:gravity="center"
+        android:hint="UserName"
+        android:inputType="text"
+        android:padding="3dp" >
 
-          <requestFocus />
-      </EditText>
+        <requestFocus />
+    </EditText>
 
-      <ImageView
-          android:id="@+id/imageView2"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_below="@+id/editText_pass"
-          android:layout_centerHorizontal="true"
-          android:layout_marginTop="120dp"
-          android:src="@drawable/ic_go" />
+    <EditText
+        android:id="@+id/edit_pass"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/edit_username"
+        android:layout_below="@+id/edit_username"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/rounded_edittext"
+        android:ems="10"
+        android:gravity="center"
+        android:hint="Password"
+        android:inputType="textPassword"
+        android:padding="3dp" />
+
+   <Button
+        android:id="@+id/btn_logIn"
+        android:onClick="click_logIn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="27dp"
+        android:background="@drawable/shaped"
+        android:text="LogIn"
+        android:textColor="#FFFFFF" />
 
 </RelativeLayout>

@@ -10,5 +10,8 @@
     <string name="title_activity_location">Location</string>
     <string name="title_activity_log_in">LogIn</string>
     <string name="title_activity_sign_up">SignUp</string>
+    <string name="search_hint">Search</string>
+    <string name="app_label">Hello world!</string>
+    <string name="name">Name</string>
 
 </resources>

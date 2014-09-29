@@ -19,11 +19,10 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
-		img_Create_Account = (ImageView) findViewById(R.id.imageView1);
 		img_forRent = (ImageView) findViewById(R.id.imageView2);
 		img_forSale = (ImageView) findViewById(R.id.imageView3);
 		img_Location = (ImageView) findViewById(R.id.imageView4);
-		img_LogIn = (ImageView) findViewById(R.id.imageView5);
+
 	}
 
 	public void img_rent(View v) {
@@ -33,16 +32,13 @@ public class MainActivity extends Activity {
 
 	}
 
-	
 	public void img_sale(View v) {
 
 		Intent uni = new Intent(MainActivity.this, ForSale.class);
 		startActivity(uni);
 
 	}
-	
-	
-	
+
 	public void img_location(View v) {
 
 		Intent uni = new Intent(MainActivity.this, Location.class);
@@ -50,32 +46,20 @@ public class MainActivity extends Activity {
 
 	}
 
-	
-	public void img_create_account(View v) {
-
-		Intent uni = new Intent(MainActivity.this, SignUp.class);
-		startActivity(uni);
-
-	}
-	
-	
-	public void img_login(View v) {
-
-		Intent uni = new Intent(MainActivity.this, LogIn.class);
-		startActivity(uni);
-
-	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	/*
+	 * 
+	 * public void img_create_account(View v) {
+	 * 
+	 * Intent uni = new Intent(MainActivity.this, SignUp.class);
+	 * startActivity(uni);
+	 * 
+	 * }
+	 * 
+	 * public void img_login(View v) {
+	 * 
+	 * Intent uni = new Intent(MainActivity.this, LogIn.class);
+	 * startActivity(uni);
+	 * 
+	 * }
+	 */
 }

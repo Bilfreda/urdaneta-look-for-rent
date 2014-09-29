@@ -417,26 +417,31 @@ containing a value of this type.
         public static final int powered_by_google_dark=0x7f020028;
         public static final int powered_by_google_light=0x7f020029;
         public static final int rounded_edittext=0x7f02002a;
+        public static final int shaped=0x7f02002b;
     }
     public static final class id {
-        public static final int action_settings=0x7f070022;
+        public static final int action_settings=0x7f070027;
         public static final int book_now=0x7f070010;
+        public static final int btn_logIn=0x7f07001c;
+        public static final int btn_signUp=0x7f070019;
+        public static final int button1=0x7f070023;
         public static final int buyButton=0x7f07000a;
         public static final int buy_now=0x7f07000f;
         public static final int buy_with_google=0x7f07000e;
         public static final int classic=0x7f070011;
-        public static final int editText_pass=0x7f07001a;
+        public static final int editText_password=0x7f070022;
         public static final int editText_uni=0x7f070017;
-        public static final int editText_username=0x7f070019;
+        public static final int editText_username=0x7f070024;
+        public static final int edit_pass=0x7f07001b;
+        public static final int edit_username=0x7f07001a;
         public static final int grayscale=0x7f070012;
         public static final int holo_dark=0x7f070005;
         public static final int holo_light=0x7f070006;
         public static final int hybrid=0x7f070004;
-        public static final int imageView1=0x7f07001f;
-        public static final int imageView2=0x7f07001b;
-        public static final int imageView3=0x7f07001c;
-        public static final int imageView4=0x7f07001d;
-        public static final int imageView5=0x7f07001e;
+        public static final int imageView1=0x7f070020;
+        public static final int imageView2=0x7f07001d;
+        public static final int imageView3=0x7f07001e;
+        public static final int imageView4=0x7f07001f;
         public static final int img_btn_uni=0x7f070018;
         public static final int list_for_Rent=0x7f070014;
         public static final int list_for_sale=0x7f070015;
@@ -446,13 +451,14 @@ containing a value of this type.
         public static final int none=0x7f070000;
         public static final int normal=0x7f070001;
         public static final int production=0x7f070007;
+        public static final int radioGroup1=0x7f070021;
         public static final int sandbox=0x7f070008;
         public static final int satellite=0x7f070002;
         public static final int selectionDetails=0x7f07000b;
         public static final int strict_sandbox=0x7f070009;
         public static final int terrain=0x7f070003;
-        public static final int txt_forRent=0x7f070021;
-        public static final int txt_forSale=0x7f070020;
+        public static final int txt_forRent=0x7f070026;
+        public static final int txt_forSale=0x7f070025;
         public static final int wrap_content=0x7f07000d;
     }
     public static final class integer {
@@ -478,6 +484,7 @@ containing a value of this type.
     }
     public static final class string {
         public static final int action_settings=0x7f050022;
+        public static final int app_label=0x7f05002a;
         public static final int app_name=0x7f050020;
         public static final int auth_client_needs_enabling_title=0x7f050001;
         public static final int auth_client_needs_installation_title=0x7f050002;
@@ -576,6 +583,8 @@ containing a value of this type.
         public static final int common_signin_button_text_long=0x7f05001e;
         public static final int hello_world=0x7f050021;
         public static final int large_text=0x7f050025;
+        public static final int name=0x7f05002b;
+        public static final int search_hint=0x7f050029;
         public static final int title_activity_for_rent=0x7f050023;
         public static final int title_activity_for_sale=0x7f050024;
         public static final int title_activity_location=0x7f050026;

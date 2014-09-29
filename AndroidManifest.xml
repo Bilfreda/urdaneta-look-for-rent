@@ -19,6 +19,8 @@
     <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    
 
     <uses-feature
         android:glEsVersion="0x00020000"
@@ -28,16 +30,28 @@
         android:allowBackup="true"
         android:icon="@drawable/ic_icon"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
-        <activity
-            android:name=".MainActivity"
-            android:label="@string/app_name"
-            android:parentActivityName=".MainActivity" >
-            <intent-filter>
+        android:theme="@android:style/Theme.Holo.Light" >
+        
+         <activity
+            android:name=".LogIn"
+            android:label="@string/title_activity_log_in"
+            android:parentActivityName=".LogIn" >
+            
+             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+           
+            
+             
+        </activity>
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/app_name"
+            android:parentActivityName=".MainActivity" >
+            
+           
         </activity>
         <activity
             android:name=".ForRent"
@@ -47,7 +61,7 @@
         <activity
             android:name=".ForSale"
             android:label="@string/title_activity_for_sale"
-             android:parentActivityName=".ForSale" >
+            android:parentActivityName=".ForSale" >
         </activity>
         <activity
             android:name=".Location"
@@ -62,15 +76,11 @@
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
 
-        <activity
-            android:name=".LogIn"
-            android:label="@string/title_activity_log_in"
-            android:parentActivityName=".LogIn"  >
-        </activity>
+       
         <activity
             android:name=".SignUp"
             android:label="@string/title_activity_sign_up"
-            android:parentActivityName=".SignUp"  >
+            android:parentActivityName=".SignUp" >
         </activity>
     </application>
 

@@ -11,49 +11,42 @@
 
     <ImageView
         android:id="@+id/imageView2"
-        android:onClick="img_rent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/imageView3"
-        android:layout_alignParentRight="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:padding="25dp"
+        android:onClick="img_rent"
         android:src="@drawable/ic_rent" />
 
     <ImageView
         android:id="@+id/imageView3"
-        android:onClick="img_sale"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="46dp"
-        android:layout_toLeftOf="@+id/imageView4"
+        android:layout_alignBottom="@+id/imageView2"
+        android:layout_alignParentRight="true"
+        android:onClick="img_sale"
+        android:padding="20dp"
         android:src="@drawable/ic_sale" />
 
     <ImageView
         android:id="@+id/imageView4"
-        android:onClick="img_location"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/imageView2"
-        android:layout_toLeftOf="@+id/imageView2"
+        android:layout_marginRight="23dp"
+        android:layout_marginTop="84dp"
+        android:layout_toLeftOf="@+id/imageView3"
+        android:onClick="img_location"
         android:src="@drawable/ic_location" />
-
-    <ImageView
-        android:id="@+id/imageView5"
-        android:onClick="img_login"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/imageView3"
-        android:layout_alignTop="@+id/imageView4"
-        android:layout_marginTop="67dp"
-        android:src="@drawable/ic_login" />
 
     <ImageView
         android:id="@+id/imageView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/imageView5"
-        android:layout_alignRight="@+id/imageView2"
-        android:onClick="img_create_account"
+        android:layout_alignTop="@+id/imageView4"
+        android:layout_marginLeft="16dp"
+        android:layout_toRightOf="@+id/imageView2"
         android:src="@drawable/ic_add_account" />
 
 </RelativeLayout>

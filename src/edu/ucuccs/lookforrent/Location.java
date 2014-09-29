@@ -27,7 +27,7 @@ public class Location extends Activity {
 		
 		GMap.moveCamera(CameraUpdateFactory.newLatLng(URDANETA));
 		GMap.animateCamera(CameraUpdateFactory.zoomIn());
-		GMap.animateCamera(CameraUpdateFactory.zoomTo(14), 2000, null);
+		GMap.animateCamera(CameraUpdateFactory.zoomTo(15), 2000, null);
 
 
 	}
