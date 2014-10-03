@@ -1,0 +1,77 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/LoginFormContainer"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#206FB7" >
+
+    <Button
+        android:id="@+id/btn_signup"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/btn_ForgetPass"
+        android:layout_alignParentBottom="true"
+        android:background="#80000000"
+        android:text="@string/action_register"
+        android:textColor="#FFFFFF" />
+
+    <Button
+        android:id="@+id/btn_login"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/orTV"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="25dp"
+        android:background="#80000000"
+        android:text="@string/action_sign_in_short"
+        android:textColor="#FFFFFF" />
+
+    <TextView
+        android:id="@+id/orTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/btn_ForgetPass"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="18dp"
+        android:text="@string/orText" />
+
+    <Button
+        android:id="@+id/btn_ForgetPass"
+        android:layout_width="287dp"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/btn_signup"
+        android:layout_alignRight="@+id/btn_login"
+        android:layout_marginBottom="24dp"
+        android:background="#80000000"
+        android:text="@string/forget_password"
+        android:textColor="#FFFFFF" />
+
+    <EditText
+        android:id="@+id/password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/btn_login"
+        android:layout_alignRight="@+id/btn_login"
+        android:layout_below="@+id/username"
+        android:layout_margin="5dp"
+        android:background="@drawable/rounded_edittext"
+        android:ems="10"
+        android:gravity="center"
+        android:hint="@string/password"
+        android:inputType="textPassword"
+        android:padding="5dp" />
+
+    <EditText
+        android:id="@+id/username"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/btn_login"
+        android:layout_alignParentTop="true"
+        android:layout_alignRight="@+id/btn_login"
+        android:layout_margin="5dp"
+        android:background="@drawable/rounded_edittext"
+        android:ems="10"
+        android:gravity="center"
+        android:hint="@string/username"
+        android:padding="5dp" />
+
+</RelativeLayout>

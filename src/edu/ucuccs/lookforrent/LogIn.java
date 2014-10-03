@@ -1,131 +1,233 @@
 package edu.ucuccs.lookforrent;
 
+import java.util.Locale;
+
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.parse.LogInCallback;
 import com.parse.Parse;
+import com.parse.ParseAnalytics;
 import com.parse.ParseException;
-import com.parse.ParseObject;
 import com.parse.ParseUser;
 
-public class LogIn extends Activity {
+public class Login extends Activity {
 
-	Button btn_signUp;
-	Button btn_logIn;
-	EditText edit_userN;
-	EditText edit_pass;
+	Button btn_LoginIn = null;
+	Button btn_SignUp = null;
+	Button btn_ForgetPass = null;
+	private EditText mUserNameEditText;
+	private EditText mPasswordEditText;
 
-	ParseObject parse_Object;
-	ParseUser user;
-	final String APPLICATION_ID = "5gEy3nUyaJDyjdRGkhMJW7Iysebr11M94JEympCd";
-	final String CLIENT_KEY = "wsvtwN7dNSEZyqVXIjXpcscoqiIFEwcR5wYVTERa";
+	// flag for Internet connection status
+	Boolean isInternetPresent = false;
+	// Connection detector class
+	ConnectionDetector cd;
+
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_log_in);
+		setContentView(R.layout.activity_login);
 
-		btn_signUp = (Button) findViewById(R.id.btn_signUp);
-		btn_logIn = (Button) findViewById(R.id.btn_logIn);
-		edit_userN = (EditText) findViewById(R.id.edit_username);
-		edit_pass = (EditText) findViewById(R.id.edit_pass);
+		//Initializing Parse SDK
+		onCreateParse();
+		//Calling ParseAnalytics to see Analytics of our app
+		ParseAnalytics.trackAppOpened(getIntent());
+		
+		// creating connection detector class instance
+		cd = new ConnectionDetector(getApplicationContext());
 
-		Parse.initialize(this, APPLICATION_ID, CLIENT_KEY);
+		btn_LoginIn = (Button) findViewById(R.id.btn_login);
+		btn_SignUp = (Button) findViewById(R.id.btn_signup);
+		btn_ForgetPass = (Button) findViewById(R.id.btn_ForgetPass);
+		mUserNameEditText = (EditText) findViewById(R.id.username);
+		mPasswordEditText = (EditText) findViewById(R.id.password);
+
+
+		btn_LoginIn.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+
+				// get Internet status
+				isInternetPresent = cd.isConnectingToInternet();
+				// check for Internet status
+				if (isInternetPresent) {
+					// Internet Connection is Present
+					// make HTTP requests
+					attemptLogin();
+				} else {
+					// Internet connection is not present
+					// Ask user to connect to Internet
+					showAlertDialog(Login.this, "No Internet Connection",
+							"You don't have internet connection.", false);
+				}
+
+			}
+		});
+
+		btn_SignUp.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				Intent in =  new Intent(Login.this,SignUp.class);
+				startActivity(in);
+			}
+		});
+		
+		btn_ForgetPass.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				Intent in =  new Intent(Login.this,ForgetParsePassword.class);
+				startActivity(in);
+			}
+		});
+
+
 
 	}
 
-	public void click_signUp(View v) {
-		Intent uni1 = new Intent(LogIn.this, SignUp.class);
-		startActivity(uni1);
-
+	public void onCreateParse() { 
+		Parse.initialize(this, "5gEy3nUyaJDyjdRGkhMJW7Iysebr11M94JEympCd", "wsvtwN7dNSEZyqVXIjXpcscoqiIFEwcR5wYVTERa"); 
 	}
 
-	public void click_logIn(View v) {
 
-		/*
-		 * parse_Object.logInInBackground("username", "password", new
-		 * LogInCallback() { public void done(ParseUser user, ParseException e)
-		 * { if (user != null) { // Hooray! The user is logged in. } else { //
-		 * Signup failed. Look at the ParseException to see what happened. } }
-		 * });;
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		super.onCreateOptionsMenu(menu);
+		getMenuInflater().inflate(R.menu.login, menu);
+		return true;
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		// Handle item selection
+		switch (item.getItemId()) {
+		case R.id.menu_forgot_password:
+			forgotPassword();
+			return true;
+		default:
+			return super.onOptionsItemSelected(item);
+		}
+	}
+
+	private void forgotPassword(){
+		/* 
+		FragmentManager fm = getSupportFragmentManager();
+	     ForgotPasswordDialogFragment forgotPasswordDialog = new ForgotPasswordDialogFragment();
+	     forgotPasswordDialog.show(fm, null);
 		 */
-
-		/*
-		 * ParseQuery<ParseObject> query = new ParseQuery<ParseObject>("LogIn");
-		 * query.whereEqualTo("username", edit_userN.getText().toString());
-		 * query.whereEqualTo("password", edit_pass.getText().toString());
-		 * 
-		 * query.findInBackground(new FindCallback<ParseObject>() { public void
-		 * done(List<ParseObject> arg0, ParseException e) { if (e == null) {
-		 * AlertDialog.Builder builder = new AlertDialog.Builder( LogIn.this);
-		 * builder.setMessage("LogIn Failed")
-		 * .setTitle("Invalid Username and Password")
-		 * .setPositiveButton(android.R.string.ok, null); AlertDialog dialog =
-		 * builder.create(); dialog.show();
-		 * 
-		 * } else { // Signup failed. Look at the ParseException to see what //
-		 * happened.
-		 * 
-		 * Intent uni = new Intent(LogIn.this, MainActivity.class);
-		 * startActivity(uni);
-		 * 
-		 * } } });
-		 */
-
-		// Retrieve the text entered from the EditText
-		String usernametxt = edit_userN.getText().toString();
-		String passwordtxt = edit_pass.getText().toString();
-
-		// Send data to Parse.com for verification
-		ParseUser.logInInBackground(usernametxt, passwordtxt,
-				new LogInCallback() {
-					public void done(ParseUser user, ParseException e) {
-						if (user != null) {
-							// If user exist and authenticated, send
-							// user to Welcome.class
-
-							AlertDialog.Builder builder = new AlertDialog.Builder(
-									LogIn.this);
-							builder.setMessage("Successfully LogIn")
-									.setTitle("Successful")
-									.setPositiveButton(
-											android.R.string.ok,
-											new DialogInterface.OnClickListener() {
-												public void onClick(
-														DialogInterface dialog,
-														int which) {
-
-													Intent intent = new Intent(
-															LogIn.this,
-															MainActivity.class);
-													startActivity(intent);
-
-												}
-											});
-							AlertDialog dialog = builder.create();
-							dialog.show();
-
-						} else {
-
-							AlertDialog.Builder builder = new AlertDialog.Builder(
-									LogIn.this);
-							builder.setMessage("Invalid Username and Password")
-									.setTitle("LogIn Failed")
-									.setPositiveButton(android.R.string.ok,
-											null);
-							AlertDialog dialog = builder.create();
-							dialog.show();
-
-						}
-					}
-
-				});
 	}
+
+	public void attemptLogin() {
+
+		clearErrors();
+
+		// Store values at the time of the login attempt.
+		String username = mUserNameEditText.getText().toString();
+		String password = mPasswordEditText.getText().toString();
+
+		boolean cancel = false;
+		View focusView = null;
+
+		// Check for a valid password.
+		if (TextUtils.isEmpty(password)) {
+			mPasswordEditText.setError(getString(R.string.error_field_required));
+			focusView = mPasswordEditText;
+			cancel = true;
+		} else if (password.length() < 4) {
+			mPasswordEditText.setError(getString(R.string.error_invalid_password));
+			focusView =mPasswordEditText;
+			cancel = true;
+		}
+
+		// Check for a valid email address.
+		if (TextUtils.isEmpty(username)) {
+			mUserNameEditText.setError(getString(R.string.error_field_required));
+			focusView = mUserNameEditText;
+			cancel = true;
+		}
+
+		if (cancel) {
+			// There was an error; don't attempt login and focus the first
+			// form field with an error.
+			focusView.requestFocus();
+		} else {
+			// perform the user login attempt.
+			login(username.toLowerCase(Locale.getDefault()), password);
+		}
+	}
+
+	private void login(String lowerCase, String password) {
+		// TODO Auto-generated method stub
+		ParseUser.logInInBackground(lowerCase, password, new LogInCallback() {
+			@Override
+			public void done(ParseUser user, ParseException e) {
+				// TODO Auto-generated method stub
+				if(e == null)
+					loginSuccessful();
+				else
+					loginUnSuccessful();
+			}
+		});
+
+	}
+
+	protected void loginSuccessful() {
+		// TODO Auto-generated method stub
+		Intent in =  new Intent(Login.this,MainActivity.class);
+		startActivity(in);
+	}
+	protected void loginUnSuccessful() {
+		// TODO Auto-generated method stub
+		/*Toast.makeText(getApplicationContext(), "", Toast.LENGTH_SHORT).show();*/
+		showAlertDialog(Login.this,"Login", "Username or Password is invalid.", false);
+	}
+
+	private void clearErrors(){
+		mUserNameEditText.setError(null);
+		mPasswordEditText.setError(null);
+	}
+
+	@SuppressWarnings("deprecation")
+	public void showAlertDialog(Context context, String title, String message, Boolean status) {
+		AlertDialog alertDialog = new AlertDialog.Builder(context).create();
+
+		// Setting Dialog Title
+		alertDialog.setTitle(title);
+
+		// Setting Dialog Message
+		alertDialog.setMessage(message);
+
+		// Setting alert dialog icon
+		alertDialog.setIcon(R.drawable.fail);
+
+		// Setting OK Button
+		alertDialog.setButton("OK", new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int which) {
+			}
+		});
+
+		// Showing Alert Message
+		alertDialog.show();
+	}
+
 }
