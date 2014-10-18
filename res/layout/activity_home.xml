@@ -1,0 +1,39 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#3399FF" >
+
+    <EditText
+        android:id="@+id/editText_uni"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/rounded_edittext"
+        android:inputType="text"
+        android:padding="3dp" >
+    </EditText>
+
+    <ImageView
+        android:id="@+id/img_btn_uni"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/editText_uni"
+        android:layout_alignRight="@+id/editText_uni"
+        android:layout_alignTop="@+id/editText_uni"
+        android:onClick="img_btn_search_uni"
+        android:padding="2dp"
+        android:src="@drawable/ic_search" />
+
+    <ListView
+        android:id="@+id/listView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/editText_uni" >
+    </ListView>
+
+</RelativeLayout>

@@ -1,52 +1,63 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/LoginFormContainer"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="edu.ucuccs.lookforrent.MainActivity" >
+    android:background="#3399FF" >
 
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="wrap_content"
+    <Button
+        android:id="@+id/btn_signup"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:padding="25dp"
-        android:onClick="img_rent"
-        android:src="@drawable/ic_rent" />
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="40dp"
+        android:background="#80000000"
+        android:text="@string/action_register"
+        android:textColor="#FFFFFF" />
 
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="wrap_content"
+    <Button
+        android:id="@+id/btn_login"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/imageView2"
+        android:layout_above="@+id/btn_signup"
+        android:layout_alignLeft="@+id/btn_signup"
+        android:layout_marginBottom="19dp"
+        android:background="#80000000"
+        android:radius="8dp"
+        android:text="@string/action_sign_in_short"
+        android:textColor="#FFFFFF" />
+
+    <EditText
+        android:id="@+id/edit_UName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
-        android:onClick="img_sale"
-        android:padding="20dp"
-        android:src="@drawable/ic_sale" />
+        android:layout_alignParentTop="true"
+        android:layout_margin="10dp"
+        android:layout_marginTop="63dp"
+        android:background="@drawable/rounded_edittext"
+        android:ems="10"
+        android:gravity="center"
+        android:inputType="text"
+        android:hint="@string/username"
+        android:padding="5dp" >
 
-    <ImageView
-        android:id="@+id/imageView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/imageView2"
-        android:layout_marginRight="23dp"
-        android:layout_marginTop="84dp"
-        android:layout_toLeftOf="@+id/imageView3"
-        android:onClick="img_location"
-        android:src="@drawable/ic_location" />
+        <requestFocus />
+    </EditText>
 
-    <ImageView
-        android:id="@+id/imageView1"
-        android:layout_width="wrap_content"
+    <EditText
+        android:id="@+id/edit_Pass"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/imageView4"
-        android:layout_marginLeft="16dp"
-        android:layout_toRightOf="@+id/imageView2"
-        android:src="@drawable/ic_add_account" />
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/edit_UName"
+        android:layout_margin="10dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/rounded_edittext"
+        android:ems="10"
+        android:gravity="center"
+        android:hint="@string/password"
+        android:inputType="textPassword"
+        android:padding="5dp" />
 
 </RelativeLayout>

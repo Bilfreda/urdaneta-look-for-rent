@@ -1,65 +1,197 @@
 package edu.ucuccs.lookforrent;
 
+import java.util.Locale;
+
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
-import android.widget.ImageView;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.EditText;
+
+import com.parse.LogInCallback;
+import com.parse.Parse;
+import com.parse.ParseAnalytics;
+import com.parse.ParseException;
+import com.parse.ParseUser;
 
 public class MainActivity extends Activity {
 
-	ImageView img_Create_Account;
-	ImageView img_forRent;
-	ImageView img_forSale;
-	ImageView img_Location;
-	ImageView img_LogIn;
+	Button btn_LoginIn = null;
+	Button btn_SignUp = null;
+	private EditText mUserNameEditText;
+	private EditText mPasswordEditText;
+
+	// flag for Internet connection status
+	Boolean isInternetPresent = false;
+	// Connection detector class
+	ConnectionDetector cd;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
-		img_forRent = (ImageView) findViewById(R.id.imageView2);
-		img_forSale = (ImageView) findViewById(R.id.imageView3);
-		img_Location = (ImageView) findViewById(R.id.imageView4);
+		// Initializing Parse SDK
+		onCreateParse();
+		// Calling ParseAnalytics to see Analytics of our app
+		ParseAnalytics.trackAppOpened(getIntent());
+
+		// creating connection detector class instance
+		cd = new ConnectionDetector(getApplicationContext());
+
+		btn_LoginIn = (Button) findViewById(R.id.btn_login);
+		btn_SignUp = (Button) findViewById(R.id.btn_signup);
+
+		mUserNameEditText = (EditText) findViewById(R.id.edit_UName);
+		mPasswordEditText = (EditText) findViewById(R.id.edit_Pass);
+
+		btn_LoginIn.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+
+				// get Internet status
+				isInternetPresent = cd.isConnectingToInternet();
+				// check for Internet status
+				if (isInternetPresent) {
+					// Internet Connection is Present
+					// make HTTP requests
+					attemptLogin();
+				} else {
+					// Internet connection is not present
+					// Ask user to connect to Internet
+					showAlertDialog(MainActivity.this,
+							"No Internet Connection",
+							"You don't have internet connection.", false);
+				}
+
+			}
+		});
+
+		btn_SignUp.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				Intent in = new Intent(MainActivity.this, CreateAccount.class);
+				startActivity(in);
+			}
+		});
 
 	}
 
-	public void img_rent(View v) {
+	public void onCreateParse() {
+		Parse.initialize(this, "5gEy3nUyaJDyjdRGkhMJW7Iysebr11M94JEympCd",
+				"wsvtwN7dNSEZyqVXIjXpcscoqiIFEwcR5wYVTERa");
+	}
 
-		Intent uni = new Intent(MainActivity.this, ForRent.class);
-		startActivity(uni);
+	public void attemptLogin() {
+
+		clearErrors();
+
+		// Store values at the time of the login attempt.
+		String username = mUserNameEditText.getText().toString();
+		String password = mPasswordEditText.getText().toString();
+
+		boolean cancel = false;
+		View focusView = null;
+
+		// Check for a valid password.
+		if (TextUtils.isEmpty(password)) {
+			mPasswordEditText
+					.setError(getString(R.string.error_field_required));
+			focusView = mPasswordEditText;
+			cancel = true;
+		} else if (password.length() < 4) {
+			mPasswordEditText
+					.setError(getString(R.string.error_invalid_password));
+			focusView = mPasswordEditText;
+			cancel = true;
+		}
+
+		// Check for a valid username.
+		if (TextUtils.isEmpty(username)) {
+			mUserNameEditText
+					.setError(getString(R.string.error_field_required));
+			focusView = mUserNameEditText;
+			cancel = true;
+		}
+
+		if (cancel) {
+			// There was an error; don't attempt login and focus the first
+			// form field with an error.
+			focusView.requestFocus();
+		} else {
+			// perform the user login attempt.
+			login(username.toLowerCase(Locale.getDefault()), password);
+		}
+	}
+
+	private void login(String lowerCase, String password) {
+		// TODO Auto-generated method stub
+		ParseUser.logInInBackground(lowerCase, password, new LogInCallback() {
+			@Override
+			public void done(ParseUser user, ParseException e) {
+				// TODO Auto-generated method stub
+				if (e == null)
+					loginSuccessful();
+				else
+					loginUnSuccessful();
+			}
+		});
 
 	}
 
-	public void img_sale(View v) {
-
-		Intent uni = new Intent(MainActivity.this, ForSale.class);
-		startActivity(uni);
-
+	protected void loginSuccessful() {
+		// TODO Auto-generated method stub
+		Intent in = new Intent(MainActivity.this, Home.class);
+		startActivity(in);
 	}
 
-	public void img_location(View v) {
-
-		Intent uni = new Intent(MainActivity.this, Location.class);
-		startActivity(uni);
-
+	protected void loginUnSuccessful() {
+		// TODO Auto-generated method stub
+		/*
+		 * Toast.makeText(getApplicationContext(), "",
+		 * Toast.LENGTH_SHORT).show();
+		 */
+		showAlertDialog(MainActivity.this, "Login",
+				"Username or Password is invalid.", false);
 	}
 
-	/*
-	 * 
-	 * public void img_create_account(View v) {
-	 * 
-	 * Intent uni = new Intent(MainActivity.this, SignUp.class);
-	 * startActivity(uni);
-	 * 
-	 * }
-	 * 
-	 * public void img_login(View v) {
-	 * 
-	 * Intent uni = new Intent(MainActivity.this, LogIn.class);
-	 * startActivity(uni);
-	 * 
-	 * }
-	 */
+	private void clearErrors() {
+		mUserNameEditText.setError(null);
+		mPasswordEditText.setError(null);
+	}
+
+	@SuppressWarnings("deprecation")
+	public void showAlertDialog(Context context, String title, String message,
+			Boolean status) {
+		AlertDialog alertDialog = new AlertDialog.Builder(context).create();
+
+		// Setting Dialog Title
+		alertDialog.setTitle(title);
+
+		// Setting Dialog Message
+		alertDialog.setMessage(message);
+
+		// Setting alert dialog icon
+		alertDialog.setIcon(R.drawable.fail);
+
+		// Setting OK Button
+		alertDialog.setButton("OK", new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int which) {
+			}
+		});
+
+		// Showing Alert Message
+		alertDialog.show();
+	}
+
 }

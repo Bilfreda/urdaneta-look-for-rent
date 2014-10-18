@@ -32,5 +32,8 @@
     <string name="password">Password</string>
     <string name="username">Username</string>
     <string name="title_activity_forget_parse_password">ForgetParsePassword</string>
+    <string name="title_activity_fill_up">FillUp</string>
+    <string name="title_activity_home">Home</string>
+    <string name="title_activity_add_buildings">AddBuildings</string>
 
 </resources>

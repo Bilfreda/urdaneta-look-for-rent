@@ -5,7 +5,7 @@
     android:versionName="1.0" >
 
     <uses-sdk
-        android:minSdkVersion="17"
+        android:minSdkVersion="15"
         android:targetSdkVersion="19" />
 
     <permission
@@ -31,34 +31,14 @@
         android:label="@string/app_name"
         android:theme="@android:style/Theme.Holo.Light" >
         <activity
-            android:name=".Login"
-            android:label="@string/title_activity_log_in"
-            android:parentActivityName=".Login" >
+            android:name=".MainActivity"
+            android:label="@string/app_name"
+            android:parentActivityName=".MainActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <activity
-            android:name=".MainActivity"
-            android:label="@string/app_name"
-            android:parentActivityName=".MainActivity" >
-        </activity>
-        <activity
-            android:name=".ForRent"
-            android:label="@string/title_activity_for_rent"
-            android:parentActivityName=".ForRent" >
-        </activity>
-        <activity
-            android:name=".ForSale"
-            android:label="@string/title_activity_for_sale"
-            android:parentActivityName=".ForSale" >
-        </activity>
-        <activity
-            android:name=".Location"
-            android:label="@string/title_activity_location"
-            android:parentActivityName=".Location" >
         </activity>
 
         <meta-data
@@ -69,14 +49,16 @@
             android:value="@integer/google_play_services_version" />
 
         <activity
-            android:name=".SignUp"
-            android:label="@string/title_activity_sign_up"
-            android:parentActivityName=".SignUp" >
+            android:name=".Home"
+            android:label="@string/title_activity_home" >
         </activity>
         <activity
-            android:name=".ForgetParsePassword"
-            android:label="@string/title_activity_forget_parse_password"
-            android:parentActivityName=".ForgetParsePassword" >
+            android:name=".AddBuildings"
+            android:label="@string/title_activity_add_buildings" >
+        </activity>
+        <activity
+            android:name=".CreateAccount"
+            android:label="@string/title_activity_create_account" >
         </activity>
     </application>
 
